@@ -1,21 +1,38 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from 'react';
+import { css } from '@emotion/core';
+import { useStaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
+import Layout from '../components/layout';
+import SEO from '../components/seo';
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+const titleStyles = css`
+  color: hotpink;
+`;
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+const IndexPage = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      img: file(relativePath: { eq: "construction.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 300) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `);
 
-export default IndexPage
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <h1 css={titleStyles}>Kate Wood</h1>
+      <p>I'm rebuilding my new portfolio site here.</p>
+      <p>It will be here when it's ready.</p>
+      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+        <Img fluid={data.img.childImageSharp.fluid} />
+      </div>
+    </Layout>
+  );
+};
+
+export default IndexPage;
