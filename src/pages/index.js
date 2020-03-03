@@ -5,7 +5,7 @@ import Img from 'gatsby-image';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-const titleStyles = css`
+const pinkStyles = css`
   color: hotpink;
 `;
 
@@ -25,12 +25,13 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO title="Home" />
-      <h1 css={titleStyles}>Kate Wood</h1>
+      <h1 css={pinkStyles}>Kate Wood</h1>
       <p>I'm rebuilding my new portfolio site here.</p>
       <p>It will be here when it's ready.</p>
       <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
         <Img fluid={data.img.childImageSharp.fluid} />
       </div>
+      <p>You can view my old portfolio site <a href="https://katekode.herokuapp.com/" css={pinkStyles}>here</a>.</p>
     </Layout>
   );
 };
